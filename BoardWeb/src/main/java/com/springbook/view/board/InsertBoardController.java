@@ -5,31 +5,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-import com.springbook.view.controller.Controller;
 
-public class InsertBoardController implements Controller {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+@Controller
+public class InsertBoardController{
+	@RequestMapping(value="/insertBoard.do")
+	public void handleRequest(BoardVO vo) {
 		System.out.println("글 등록 처리");
+		
+		BoardDAO boardDAO=new BoardDAO();
+		boardDAO.insertBoard(vo);
+		
 		
 		// 1. 사용자 입력 정보 추출
 		// request.setCharacterEncoding("EUC-KR");
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String content = request.getParameter("content");
+		/*String title = request.getParameter("title");
+		String writter = request.getParameter("writter");
+		String content = request.getParameter("content");*/
 		
 		// 2. DB 연동 처리
-		BoardVO vo = new BoardVO();
+		/*BoardVO vo = new BoardVO();
 		vo.setTitle(title);
-		vo.setWritter(writer);
+		vo.setWritter(writter);
 		vo.setContent(content);
 		
 		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.insertBoard(vo);
+		boardDAO.insertBoard(vo);*/
 		
-		// 3. 화면 네비게이션
-		return "getBoardList.do";
+/*		// 3. 화면 네비게이션
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:getBoardList.do");
+		return mav;*/
 	}
-
 }

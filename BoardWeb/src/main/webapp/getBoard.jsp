@@ -31,28 +31,28 @@ BoardVO board= (BoardVO)session.getAttribute("board");
 	<hr>
 	<form action="updateBoard.do" method="post">
 		<table border="1" cellpadding="0" cellspacing="0">
-		<input name="seq" type="hidden" value="<%=board.getSeq() %>"/>
+		<input name="seq" type="hidden" value="${board.seq }"/>
 			<tr>
 				<td bgcolor="orange" width="70">제목</td>
 				<td align="left"><input name="title" type="text"
-					value="<%=board.getTitle()%>" /></td>
+					value="${board.title }" /></td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">작성자</td>
-				<td align="left"><%=board.getWritter()%></td>
+				<td align="left">${board.writter }</td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">내용</td>
-				<td align="left"><textarea rows="10" cols="40" name="content"><%=board.getContent()%></textarea>
+				<td align="left"><textarea rows="10" cols="40" name="content">${board.content }</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">등록일</td>
-				<td align="left"><%=board.getRegDate()%></td>
+				<td align="left">${board.regDate }</td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">조회수</td>
-				<td align="left"><%=board.getCnt()%></td>
+				<td align="left">${board.cnt }</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -63,7 +63,7 @@ BoardVO board= (BoardVO)session.getAttribute("board");
 	</form>
 	<hr>
 	<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-	<a href="deleteBoard.do?seq<%=board.getSeq() %>">글삭제</a>&nbsp;&nbsp;&nbsp;	
+	<a href="deleteBoard.do?seq=${board.seq }">글삭제</a>&nbsp;&nbsp;&nbsp;	
 	<a href="getBoardList.do">글목록</a>&nbsp;&nbsp;&nbsp;
 </body>
 </html>
