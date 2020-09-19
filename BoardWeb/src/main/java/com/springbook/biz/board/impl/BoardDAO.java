@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
@@ -14,19 +16,24 @@ import com.springbook.biz.common.JDBCUtil;
 
 //DAO(Data Access Object)
 @Repository("boardDAO")
-public class BoardDAO implements BoardService {
+public class BoardDAO{
+	
 	//JDBC 관련 변수
 	private Connection conn=null;
 	private PreparedStatement stmt=null;
 	private ResultSet rs=null;
 	
-	//SQL 명령어들
+	//SQL 명령어들	
 	private final String BOARD_INSERT="insert into board(seq, title, writer, content) values((select nvl(max(seq),0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE="update board set title=?,"
 			+ "content=? where seq=?";
 	private final String BOARD_DELETE="delete board where seq=?";
 	private final String BOARD_GET="select * from board where seq=?";
 	private final String BOARD_LIST="select * from board order by seq desc";
+	
+	private final String BOARD_LIST_T="select * from board where title like '%' ||?|| '%' order by seq desc";
+	private final String BOARD_LIST_C="select * from board where content like '%'||?||'%' order by seq desc";
+	
 	
 	//CRUD 기능의 메소드 구현
 	//글 등록
@@ -113,6 +120,12 @@ public class BoardDAO implements BoardService {
 		List<BoardVO> boardList=new ArrayList<BoardVO>();
 		try {
 			conn=JDBCUtil.getConnection();
+			if(vo.getSearchCondition().equals("TITLE")) {
+				stmt=conn.prepareStatement(BOARD_LIST_T);
+			}else if(vo.getSearchCondition().equals("CONTENT")) {
+				stmt=conn.prepareStatement(BOARD_LIST_C);
+			}
+			stmt.setString(1, vo.getSearchKeyword());
 			stmt=conn.prepareStatement(BOARD_LIST);
 			rs=stmt.executeQuery();
 			while(rs.next()) {

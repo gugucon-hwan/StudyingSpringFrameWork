@@ -23,7 +23,7 @@ public class JDBCUtil {
 			try {
 				if(!stmt.isClosed())stmt.close();
 			}catch (Exception e) {
-				// TODO: handle exception
+				// TODO: handle exception	
 				e.printStackTrace();
 			}finally {
 				stmt=null;

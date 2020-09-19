@@ -7,48 +7,31 @@ import org.springframework.stereotype.Service;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.common.Log4jAdvice;
-import com.springbook.biz.common.LogAdvice;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
-	private BoardDAOSpring boardDAO;
-	//private LogAdvice log;
-	//private Log4jAdvice log;
+	private BoardDAO boardDAO;
 	
-	/*public BoardServiceImpl() {
-		log=new Log4jAdvice();
-	}*/
 
-	public void insertBoard(BoardVO vo) {
-		//log.printLogging();
-		/*if(vo.getSeq()==0) {
-			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
-		}*/
-		boardDAO.insertBoard(vo);//100번 글 등록 성공
-		boardDAO.insertBoard(vo);//Exception 발생
+	public void insertBoard(BoardVO vo) {		
+		boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {
-		//log.printLogging();
-		boardDAO.updateBoard(vo);
+			boardDAO.updateBoard(vo);
 	}
 
 	public void deleteBoard(BoardVO vo) {
-		//log.printLogging();
-		boardDAO.deleteBoard(vo);
+			boardDAO.deleteBoard(vo);
 	}
 
 	public BoardVO getBoard(BoardVO vo) {
-		//log.printLogging();
-		return boardDAO.getBoard(vo);
+			return boardDAO.getBoard(vo);
 	}
 
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		//log.printLogging();
-		return boardDAO.getBoardList(vo);
+			return boardDAO.getBoardList(vo);
 	}
-	
 	
 }
