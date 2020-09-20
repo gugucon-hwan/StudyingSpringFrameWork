@@ -15,7 +15,7 @@ import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
 
 //DAO(Data Access Object)
-@Repository("boardDAO")
+//@Repository("boardDAO")
 public class BoardDAO{
 	
 	//JDBC 관련 변수
@@ -43,7 +43,7 @@ public class BoardDAO{
 			conn=JDBCUtil.getConnection();
 			stmt=conn.prepareStatement(BOARD_INSERT);
 			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getWritter());
+			stmt.setString(2, vo.getWriter());
 			stmt.setString(3,vo.getContent());
 			stmt.executeUpdate();
 		}catch (Exception e) {
@@ -100,7 +100,7 @@ public class BoardDAO{
 				board=new BoardVO();
 				board.setSeq(rs.getInt("SEQ"));
 				board.setTitle(rs.getString("TITLE"));
-				board.setWritter(rs.getString("WRITER"));
+				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
 				board.setRegDate(rs.getDate("REGDATE"));
 				board.setCnt(rs.getInt("CNT"));
@@ -132,7 +132,7 @@ public class BoardDAO{
 				BoardVO board=new BoardVO();
 				board.setSeq(rs.getInt("SEQ"));
 				board.setTitle(rs.getString("TITLE"));
-				board.setWritter(rs.getString("WRITER"));
+				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
 				board.setRegDate(rs.getDate("REGDATE"));
 				board.setCnt(rs.getInt("CNT"));

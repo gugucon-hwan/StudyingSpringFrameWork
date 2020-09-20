@@ -34,7 +34,7 @@ public class BoardDAOSpring{
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 insertBoard() 기능 처리");
 		//jdbcTemplate.update(BOARD_INSERT,vo.getTitle(),vo.getWritter(),vo.getContent());
-		jdbcTemplate.update(BOARD_INSERT,vo.getSeq(),vo.getTitle(),vo.getWritter(),vo.getContent());
+		jdbcTemplate.update(BOARD_INSERT,vo.getSeq(),vo.getTitle(),vo.getWriter(),vo.getContent());
 	}
 	//글 수정
 	public void updateBoard(BoardVO vo) {
