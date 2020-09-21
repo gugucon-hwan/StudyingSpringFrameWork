@@ -18,16 +18,16 @@ import javax.persistence.TemporalType;
 @Table(name="BOARD")
 public class Board implements Serializable {
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
 	private int seq;
 	private String title;
 	private String writer;
 	private String content;
 	@Temporal(TemporalType.DATE)
 	private Date regDate = new Date();
-	private int cnt;
+	private int cnt;	
 	
-	public int getSeq() {
+	public int getSeq() {	
 		return seq;
 	}
 	public void setSeq(int seq) {

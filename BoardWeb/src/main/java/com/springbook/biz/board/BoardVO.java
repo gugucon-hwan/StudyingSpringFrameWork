@@ -1,35 +1,35 @@
 package com.springbook.biz.board;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Repository
+@Entity
+@Table(name="BOARD")
 public class BoardVO {	
 	
-	
+	@Id
+	@GeneratedValue
 	private int seq;
 	private String title;
 	private String writer;
 	private String content;
+	@Temporal(TemporalType.DATE)
 	private Date regDate;
 	private int cnt;	
-	
+	@Transient
 	private String searchCondition;
-	
+	@Transient
 	private String searchKeyword;
-	
+	@Transient
 	private MultipartFile uploadFile;
 
 	public int getSeq() {
